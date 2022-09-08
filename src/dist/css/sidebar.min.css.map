@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,AAAC,CACL,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,KAAK,CACb,gBAAgB,CAAE,KAAK,CAC1B",
+    "sources": [
+        "../../components/SideBar/sidebar.scss"
+    ],
+    "names": [],
+    "file": "sidebar.min.css"
+}

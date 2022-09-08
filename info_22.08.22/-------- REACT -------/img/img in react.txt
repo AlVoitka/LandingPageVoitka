@@ -1,0 +1,24 @@
+import './navbar.scss';
+import logo from '../../resources/img/av_logo.png';  ------2. т вот такой синтаксис
+
+function NavBar() {
+    return (
+        <div className='navbar'>
+            <div class='navbar__logo'>
+                <a href="">
+                <img src={logo} alt="альтернативный текст"></img> -------1. ресурс задается через переменную
+                </a>
+            </div> 
+            <div>
+                <nav class="navbar__links">
+                    <a href="#" class="navbar__link">About</a>
+                    <a href="#" class="navbar__link">My Skills</a>
+                    <a href="#" class="navbar__link">Work</a>
+                    <button>Contact</button>
+                </nav>
+            </div>
+        </div>
+    )
+}
+
+export default NavBar

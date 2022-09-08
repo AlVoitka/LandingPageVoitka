@@ -1,0 +1,91 @@
+Сразу после создания пакета create-react-app
+файлф scss не компелериются, а работают только css!!!!
+для решения этой проблемы нужно настроить конфиг вебпака.
+
+1.
+Если вы хотите найти файлы и конфигурации веб-пакета, перейдите в файл package.json и найдите скрипты.
+
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+
+Вы обнаружите, что объект сценариев использует библиотеку реактивных сценариев.
+
+- Теперь перейдите в node_modules и найдите папку react-scripts
+
+Эта папка react-scripts/scripts и react-scripts/config содержит все конфигурации веб-пакета.
+
+
+
+
+
+
+
+2.
+https://www.youtube.com/watch?v=2MDpClJ7Z2o&t=160s
+
+Устанавливаю пакет node-sass
+
+https://www.npmjs.com/package/node-sass
+
+тут есть проблема совместимости Node с пакетом node-sass и приведена таблица:
+NodeJS	Supported node-sass version	Node Module
+Node 17	7.0+	102
+Node 16	6.0+	93   ----------------------- вот пакет для моей текущей версии
+Node 15	5.0+, <7.0	88
+Node 14	4.14+	83
+Node 13	4.13+, <5.0	79
+Node 12	4.12+, <8.0	72
+Node 11	4.10+, <5.0	67
+Node 10	4.9+, <6.0	64
+Node 8	4.5.3+, <5.0	57
+Node <8	<5.0	<57
+
+нужно обязательно соблюдать совместимость!
+
+Проверяю версию node
+
+node -v
+
+PS E:\WebDev_Finish\Landing_Page> node -v
+v16.14.0
+
+соответсвенно выбираю версию в правом верхнем углу и копирую команду для нее:
+
+npm i node-sass@6.0.1
+
+а лучше npm i node-sass@6.0.1 --save
+
+
+И теперь нужно переименовать:
+
+App.css -> App.scss
+index.css -> index.scss
+
+а также импорты в файлах App.js и index.js 
+вместо .css
+
+import './App.scss';
+import './index.scss';
+
+
+
+
+если не работает просерить совместимость ноды с пакетом:
+
+npm outdate
+
+PS E:\WebDev_Finish\Landing_Page> npm outdate
+Package                      Current  Wanted  Latest  Location                                  Depended by
+@testing-library/user-event   13.5.0  13.5.0  14.4.3  node_modules/@testing-library/user-event  Landing_Page
+node-sass                      6.0.1   6.0.1   7.0.3  node_modules/node-sass                    Landing_Page
+web-vitals                     2.1.4   2.1.4   3.0.1  node_modules/web-vitals                   Landing_Page
+PS E:\WebDev_Finish\Landing_Page> 
+
+И тут видно Current - текущая  - 6.0.1
+            Wanted   - нужная  - 6.0.1
+
+            значит все ок!

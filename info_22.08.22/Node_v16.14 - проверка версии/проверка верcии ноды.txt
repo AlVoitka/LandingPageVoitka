@@ -1,0 +1,7 @@
+Проверяю версию node
+в терминале
+
+node -v
+
+PS E:\WebDev_Finish\Landing_Page> node -v
+v16.14.0
