@@ -1,7 +1,21 @@
 .main {
-    position: absolute;
+    // position: absolute;
     top: 0px;
     width: 100%;
     height: 100vh;
     background: url('https://wallpapers.com/images/hd/blue-cityscape-6dxtifwnvahbh2rf.webp') no-repeat 100%/cover;
+    &__animated {   
+        animation-name: up-arrow;
+        animation-duration: 20s;  
+        animation-timing-function: linear; 
+    }
+}
+
+@keyframes up-arrow {
+    from{
+        transform: scale(1);   
+    }
+    to {
+        transform: scale(1.2);
+    }
 }
