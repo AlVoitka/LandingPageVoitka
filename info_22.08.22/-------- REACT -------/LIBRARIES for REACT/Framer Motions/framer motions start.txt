@@ -1,0 +1,10 @@
+https://www.framer.com/
+https://www.npmjs.com/package/framer-motion
+
+
+https://www.youtube.com/watch?v=_94vYQtaz1Y&t=9s  --- старт
+
+1.
+Установлю зависимость
+
+npm i framer-motion@6.5.1 --save    ---поставлю эту версию

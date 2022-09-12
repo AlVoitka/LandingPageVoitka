@@ -1,18 +1,18 @@
-.main {
-    // position: absolute;
+
+
+.work {
     top: 0px;
     width: 100%;
     height: 100vh;
-    background: url('https://wallpapers.com/images/hd/blue-cityscape-6dxtifwnvahbh2rf.webp') no-repeat 100%/cover;
-    
+    background: url('https://wallpapers.com/images/hd/golden-scenic-nature-z143cx7orr8d28al.webp') no-repeat 100%/cover;
     &__animated {   
-        animation-name: approach-arrow;
+        animation-name: approach_work;
         animation-duration: 20s;  
         animation-timing-function: linear; 
     }
 }
 
-@keyframes approach-arrow {
+@keyframes approach_work {
     from{
         transform: scale(1);   
     }

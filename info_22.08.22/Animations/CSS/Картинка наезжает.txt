@@ -1,3 +1,10 @@
 https://webref.ru/recipe/2302
 
 https://webgolovolomki.com/kak-sdelat-plavnoe-uvelichenie-kartinki-pri-navedenii-effekt-na-chistom-css/
+
+
+Важный момент, при увеличениие картинка выходит за обоасть дива и соответсвенно появляется скролл, для этого 
+нужно для дива в который помещена картинка использовать свойство overflow со значением hidden.
+
+У меня долго были проблемы из-за navbar со значением sticky.
+Ножно поиграть со значениями absolute И relative. - они как правило и мешают корректно работать

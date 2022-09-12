@@ -1,0 +1,37 @@
+https://www.youtube.com/watch?v=ytAfxcz0z8Y
+
+import { Container } from '@mui/system';  ------1. Импортирую
+import './greet.scss';
+
+function Greet() {
+    return(
+        <Container>  --------- оборачиваю нужный контент
+            <div className="greet">
+                <h1 className="greet__h1">Hi, a'm Alex!</h1>
+                <h2 className="greet__h2">WEB Developer.</h2>
+                <div className='greet__gif'>
+                    <div className='greet__gif-list'><img src='https://i.gifer.com/6K8u.gif' alt=''/></div>
+                    <div className='greet__gif-list'><img src='https://i.gifer.com/6L8E.gif' alt=''/></div>
+                    <div className='greet__gif-list'><img src='https://i.gifer.com/DXKg.gif' alt=''/></div>
+                </div>
+            </div>
+        </Container>  --------- оборачиваю нужный контент
+    )
+}
+
+export default Greet;
+
+
+основные пропсы:
+1.
+maxWidth	'xs'         ---- определяет максимальную ширину контейнера и дальше жидкий контейнер 
+            | 'sm'            в зависимости от ширины экрана
+            | 'md'
+            | 'lg'
+            | 'xl'  ---- самая большая
+            | false
+            | string
+
+2.
+fixed       ----     в этом случае будет не жидким, а перескакивать на фиксированные точки ширины 
+                    как в ручном режиме я делал, до момента мобильного экрана, а там станет жидким      

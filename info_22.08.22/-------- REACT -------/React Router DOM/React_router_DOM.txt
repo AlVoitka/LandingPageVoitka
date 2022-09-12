@@ -1,3 +1,11 @@
+https://www.udemy.com/course/javascript_full/learn/lecture/28729616#questions
+в уроке есть интересная реализация разбивки приложения на страницы  на 30 минутах,
+это когда приложение большое и рендерится сразу несколько компонентов, так в от они объеденяются в страницы для 
+упрощения читабельности кода
+
+https://v5.reactrouter.com/web/guides/quick-start   --- офиц страница
+
+
 npm i react-router-dom  --- по этой команде ставится последння версия 6.3.0 (latest)
 
 npm i react-router-dom@5.3.3   --- это 5 версия на ней очень мнгого проектов
@@ -5,7 +13,10 @@ npm i react-router-dom@5.3.3   --- это 5 версия на ней очень 
 
 5.3.0 
 
-Эта библиотека состоит из 4 основных сущностей (компонентов):
+Эта библиотека состоит из 4 основных сущностей (компонентов)
+
+1.
+первым делом импорирую эти сужности в компонент:
 
 1- BrowserRouter, ее обычно переименовывают в Router,  (для удобства) и получается конструкция:
 
@@ -21,58 +32,118 @@ import { BrowserRouter as Router} from "react-router-dom";
 4- Link - сами ссылки, по которым и будет происходить переход на компоненты по маршруту
 
 
+к дополнительным компонентам можно отнести: 
+
+5.1
+<Redirect/>
+
+ <Route exact path="/">
+  {loggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />}
+</Route>
+
+Он используется к примеру при логине, если залогинен юзер, то отрендериться один интерфкйс, а если не то другой
+
+5.2
+<NavLink>
+
+В отличии от Link, тут есть возможность стилизации активной ссылки. Тоесть при нажатии юзером ссылка получает 
+класс активности.
+
+
+2.
 Пример:
 
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Links from "./Link";
 
+import './App.scss';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";   ----1. импортирую сущности
 
-const Step1 = () => <>Step 1</>
-const Step2 = () => <>Step 2</>
-const Step3 = () => <>Step 3</>
-const Result = () => <>Result</>
-
-const Header = () => <h1>Voitka form</h1>
-
+import NavBar from '../NavBar/NavBar';
+import Main from '../Main/Main';
+import About from '../About/About';
+import Skills from '../Skills/Skills';
+import Work from '../Work/Work';
 
 
 function App() {
   return (
-    <>
-      <Header />
-      <Router>
-        <Links/>
-        <br/>
-        <Switch>
-          <Route exact path="/" component={Step1} />
-          <Route path="/step2" component={Step2} />
-          <Route path="/step3" component={Step3} />
-          <Route path="/result" component={Result} />
-        </Switch>
-      </Router>
-    </>
+    <Router> --------2. Оборочивю в рутер и он будет получать сигналы от Route и рендерить нужный маршрут
+      <div className='app'>
+          <NavBar/>
+          <Switch> ---- 4. Блягодаря свичу можно комбинировать компоненты по одному маршруиу в композцию из нескольких компонентов
+            <Route exact path='/'> ---3. В Route помещается то, что должно быть показано (можно совмещать в композиции из нескольких компонентов)
+              <Main/>
+            </Route>
+            <Route exact path='/work'>
+              <Work/>
+            </Route>
+            <Route exact path='/about'>
+              <About/>
+            </Route>
+            <Route exact path='/skills'>
+              <Skills/>
+            </Route>
+          </Switch> ---- 4. Блягодаря свичу можно комбинировать компоненты по одному маршруиу в композцию из нескольких компонентов
+      </div>
+    </Router> --------2. Оборочивю в рутер и он будет получать сигналы от Route и рендерить нужный маршрут
+  );
 }
 
+export default App;
 
-а в другом компоненте со ссылками:
+Важно! 
+атрибут :
 
-import { Link } from "react-router-dom";  ----- импортирую компонент Link
+path='/' -- так обычно задается главная страница
+exact  --  сравниет на строгое совпадение пути '/skills' 
 
-const Links = () => {
+
+
+3.
+ссылки 
+В компонете где находятся сами ссылки импортирую Link:
+import './navbar.scss';
+import logo from '../../resources/img/av_logo.png';
+import { Link } from 'react-router-dom';   -------- 1.вот
+
+function NavBar() {
     return (
-        <>
-            <a href="/">Step 1  </a>  ---- была просто ссылка, а нужно изменить синтаксис
+        <div className='navbar'>
+            <div className='navbar__wrapper'>
+                <div className='navbar__logo'>
+                    <a href="">
+                        <Link exact to='/'><img src={logo} style={{borderRadius:'5px'}} alt="logo"></img></Link>
+                    </a>
+                </div> 
+                <div>
+                    <nav className="navbar__links">
+                        <ul className="navbar__list">
+                            //<li className="navbar__link"><a>About</a></li> ----- 2.была просто ссылка//
 
-            <Link to="/"> Step 1  </Link>   ---- вместо a делаю Link, и вместо атрибута href, делаю to
-            <Link to="/step2"> Step 2  </Link>
-            <Link to="/step3"> Step 3  </Link>
-            <Link to="/result"> result  </Link> 
-        </>
+                            <li className="navbar__link"><Link to='/'>About</Link></li>  ---3. Меняю на Link с атрибутом to=''
+                            <li className="navbar__link"><Link to='/skills'>Skills</Link></li>  --- и обзываю путь как в <Route exact path='/skills'>
+                            <li className="navbar__link"><Link to='/work'>Work</Link></li>
+                            <button className='navbar__btn'>Contact</button>
+                        </ul>
+                        
+                    </nav>
+                </div>
+            </div>
+        </div>
     )
 }
 
+export default NavBar;
 
 
+4.
+Но лучше использовать <NavLink/> для ссылок
+и в атрибут activeStyle помежать нужные  стили
 
-export default Links;
+<nav className="navbar__links">
+    <ul className="navbar__list">
+        <li className="navbar__link"><NavLink exact activeStyle={{color:'yellow'}} to='/about'>About</NavLink></li>
+        <li className="navbar__link"><NavLink exact activeStyle={{color:'yellow'}} to='/skills'>Skills</NavLink></li>
+        <li className="navbar__link"><NavLink exact activeStyle={{color:'yellow'}} to='/work'>Work</NavLink></li>
+        <button className='navbar__btn'>Contact</button>
+    </ul>
+</nav>

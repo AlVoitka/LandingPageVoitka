@@ -1,16 +1,36 @@
 import './App.scss';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; 
 
 import NavBar from '../NavBar/NavBar';
 import Main from '../Main/Main';
+import About from '../About/About';
+import Skills from '../Skills/Skills';
+import Work from '../Work/Work';
+import Greet from '../Greet/Greet';
 
 
 function App() {
   return (
-    <div className='app'>
-        <NavBar/>
-        <Main/>
-    </div>
-    
+    <Router>
+      <div className='app'>
+          <NavBar/>
+          <Switch>
+            <Route exact path='/'>
+              <Main/>
+              <Greet/>
+            </Route>
+            <Route exact path='/work'>
+              <Work/>
+            </Route>
+            <Route exact path='/about'>
+              <About/>
+            </Route>
+            <Route exact path='/skills'>
+              <Skills/>
+            </Route>
+          </Switch>
+      </div>
+    </Router>
   );
 }
 
