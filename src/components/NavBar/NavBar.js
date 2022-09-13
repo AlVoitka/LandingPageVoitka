@@ -1,11 +1,44 @@
 import './navbar.scss';
 import logo from '../../resources/img/av_logo.png';
 import { Link, NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function NavBar() {
     return (
-        <div className='navbar'>
-            <div className='navbar__wrapper'>
+        <motion.div 
+            className='navbar'
+            initial={{
+                y: -30,
+                opacity: 0,
+                
+
+            }}
+            animate={{
+                y: 0.5,
+                opacity: 1,
+            }}
+            transition={{
+                delay: 3,
+                duration: 1,
+            }}
+        >
+            <motion.div 
+                className='navbar__wrapper'
+                initial={{
+                    y: -10,
+                    opacity: 0,
+                    
+
+                }}
+                animate={{
+                    y: 0,
+                    opacity: 1,
+                }}
+                transition={{
+                    delay: 3.5,
+                    duration: 1,
+                }}
+            >
                 <div className='navbar__logo'>
                     <Link exact='true' to='/'><img src={logo} style={{borderRadius:'5px'}} alt="logo"></img></Link>
                 </div> 
@@ -19,9 +52,9 @@ function NavBar() {
                         </ul>
                     </nav>
                 </div>
-            </div>
+            </motion.div>
             
-        </div>
+        </motion.div>
     )
 }
 

@@ -1,0 +1,27 @@
+.aboutInfo {
+    position: absolute;
+    top: 25%;
+    &__wrapper {
+        display: grid;
+        width: 85vw;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 50px;
+    }
+    &__descr {
+        padding: 10px 10px 10px 10px;
+        background-color: rgba(49, 48, 48, 0.5);
+        border-radius: 10px;
+        
+      
+
+        h2 {
+            color: white;
+            font-size: 70px;
+            margin: 0;
+        }
+        p {
+            color: white;
+            font-size: 20px;
+        }
+    }
+}

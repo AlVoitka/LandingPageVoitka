@@ -7,8 +7,12 @@
     
     &__animated {   
         animation-name: approach-arrow;
+        animation-delay: 3s;
         animation-duration: 20s;  
-        animation-timing-function: linear; 
+        animation-iteration-count: 2;
+        animation-direction: alternate;
+        animation-timing-function: ease; 
+        // animation-play-state: paused;
     }
 }
 

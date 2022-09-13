@@ -1,10 +1,110 @@
 https://www.framer.com/
 https://www.npmjs.com/package/framer-motion
+https://www.framer.com/docs/use-spring/  --- документация
 
 
 https://www.youtube.com/watch?v=_94vYQtaz1Y&t=9s  --- старт
+https://www.youtube.com/watch?v=_94vYQtaz1Y&list=PLiZoB8JBsdzkn1yqxUaprfLYzdS-1jhJE  --- курс
 
 1.
 Установлю зависимость
 
 npm i framer-motion@6.5.1 --save    ---поставлю эту версию
+
+2.
+
+import { Container } from '@mui/system';
+import { motion } from 'framer-motion';  ----1. импортирую 
+import './greet.scss';
+
+function Greet() {
+    return(
+        <Container>
+            <div className="greet">
+                <h1 className="greet__h1">Hi, a'm Alex!</h1>
+                <div className='greet__wrapp'>
+                    <motion.h2   ----------- 2.оборачиваю что интересует в motion
+                        className="greet__h2"
+                        animate={{rotate: 360}}  --- 3. Задаю атрибут animate и в него передаю что зочу сделать
+                        transition={{  ------4.  свойство настройки анимации
+                            delay: 1, ----- задержка перед первым стартом анимации
+                            duration: 2,  ----длительность в секундах
+                            repeat: 3,   ---- кол-во повторений ( можно Infinity - бесконечность)
+                            repeatDelay: 1,  --- задеожка между анимациями
+                            repeatType: 'reverse',  --- типы повтарений (loop, mirror, reverse)
+                            type: 'spring', - типы анимаций (interia, just, keyframes,spring, tween)
+                            ease: 'easeIsOut' - еще какой то тип (liner, easeIn и тд)
+                        }}
+                    >
+                        WEB Developer</motion.h2>  ----------- 2.оборачиваю что интересует в motion
+                    <div className='greet__gif'>
+                        <div className='greet__gif-list'><img src='https://i.gifer.com/6K8u.gif' alt=''/></div>
+                        <div className='greet__gif-list'><img src='https://i.gifer.com/6L8E.gif' alt=''/></div>
+                        <div className='greet__gif-list'><img src='https://i.gifer.com/DXKg.gif' alt=''/></div>
+                    </div>
+                </div>
+                
+            </div>
+        </Container>
+    )
+}
+
+export default Greet;
+
+
+3.
+по такому же принципу оберну h1:
+
+<h1 className="greet__h1">Hi, a'm Alex!</h1>
+
+<motion.h1 
+        className="greet__h1"
+        initial={{      -----1. начальное значение анимации (с чего начинается)
+            x: -300,
+            opacity: 0,
+
+        }}
+        animate={{        -----2. к чему придет 
+            x: 0,
+            opacity: 1,
+        }}
+        transition={{    -----3.  настройка анимации
+            duration: 1,
+        }}
+    >
+    Hi, a'm Alex!
+</motion.h1>
+
+4.
+Более правильный синтаксис с использованием свойства variants:
+Данная онимация проигрывается только при загрузке страница!!!!
+Не на какие события она не навешена.
+
+import { Container } from '@mui/system';
+import { motion } from 'framer-motion';
+import './greet.scss';
+
+
+    const gifV = {  ------1. Выношу в отдельную переменную 
+        hidden: {
+            x: -100,
+            opacity: 0
+        },
+        visible: {
+            x: 0,
+            opacity: 1
+        }
+    };
+
+<div className='greet__gif'>
+    <motion.div 
+        className='greet__gif-list'
+        variants= {gifV}          -------2. передею эту переменную суда
+        initial= {'hidden'}  ----- свойству присвоиваю ключ со значениями начала анимации
+        animate= {'visible'}  ----- свойству присвоиваю ключ со значениями конца анимации
+    >
+        <img src='https://i.gifer.com/6K8u.gif' alt=''/>
+    </motion.div>
+    <div className='greet__gif-list'><img src='https://i.gifer.com/6L8E.gif' alt=''/></div>
+    <div className='greet__gif-list'><img src='https://i.gifer.com/DXKg.gif' alt=''/></div>
+</div>
