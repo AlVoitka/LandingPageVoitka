@@ -1,0 +1,21 @@
+.mobileMenu {
+    background: rgb(5, 5, 5);
+    width:100vw;
+    height:100vh;
+    &__wrapper {
+        padding-top: 60%;
+        li {
+            list-style: none;
+            padding: 10px;
+            font-size: 30px;
+            text-align: center;
+            color: white;
+        }
+    }
+    &__btn {
+        display: block;
+        margin: 0 auto;
+        width: 8rem;
+        height: 2rem;
+    }
+}

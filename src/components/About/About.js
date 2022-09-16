@@ -1,4 +1,3 @@
-import { Container } from '@mui/system';
 import "./about.scss"
 
 function About() {

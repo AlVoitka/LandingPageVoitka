@@ -1,0 +1,17 @@
+@media (max-width: 576px) {   
+    .navbar__links {
+        display: none;
+    }
+    .greet__h1 {
+        font-size: 30px;
+    }
+    .greet__h2 {
+        font-size: 30px;
+    }
+    .greet__gif {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+}

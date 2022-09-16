@@ -3,7 +3,8 @@ import logo from '../../resources/img/av_logo.png';
 import { Link, NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-function NavBar() {
+
+function NavBar({handleMenu = Function.prototype}) {
     return (
         <motion.div 
             className='navbar'
@@ -49,8 +50,17 @@ function NavBar() {
                             <li className="navbar__link"><NavLink exact activeStyle={{color:'rgba(244, 248, 3, 0.7)', fontSize: '23px'}} to='/skills'>Skills</NavLink></li>
                             <li className="navbar__link"><NavLink exact activeStyle={{color:'rgba(244, 248, 3, 0.7)', fontSize: '23px'}} to='/work'>Work</NavLink></li>
                             <button className='navbar__btn'>Contact</button>
+                            
                         </ul>
                     </nav>
+                </div>
+                <div 
+                    className="hamburger"
+                    onClick={handleMenu}
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </motion.div>
             

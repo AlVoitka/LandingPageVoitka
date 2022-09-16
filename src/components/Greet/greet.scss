@@ -34,4 +34,17 @@
             border-radius: 100%;
         }
     }
+    &__scroll {
+        position: absolute;
+        bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        width: 85vw;
+        &-h5 {
+            writing-mode: vertical-rl;
+            color: rgb(250, 249, 249);
+            font-size: 15px;
+            
+        }
+    }
 }

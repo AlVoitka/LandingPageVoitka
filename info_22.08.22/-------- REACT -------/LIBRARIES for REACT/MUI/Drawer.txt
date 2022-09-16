@@ -1,0 +1,142 @@
+https://www.youtube.com/watch?v=OZ_FUaV_xbg&t=1768s  --- 29 минута
+
+
+
+1.
+import { Drawer } from "@mui/material";  -----1. импорт
+
+
+const MobileMenu = (props) => {
+    const {
+        menuOpen,---- 4. принемаю проп и дестриктурирую его
+        menuClose = Function.prototype, -----5. Тут я строго говорю что это функция, а не объект -так может подумать реакт и бать ошибку!!
+    } = props;
+
+    return (
+        <Drawer  --------------- 2. Компонент
+            anchor="left"  -----3. проп направления выезжания
+            open={menuOpen}  -----4. принемает состояние true/false (нужно упровлять из вне)
+            onClose={menuClose}   ----5. принемиет функцию, котораая отрабатывает по закрытию ( изначально дровер закрывается по клику в не его область)
+            style={{zIndex:'9'}}   ----6.  это я захотел чтобы дравер был под навбаром
+        >
+            <div 
+                style={{background:'black',width:'100vw',height:'100vh'}}
+            >
+                hiiiii!
+            </div>
+        </Drawer>  --------------- 2. Компонент
+    )
+}
+
+export default MobileMenu;
+
+
+
+
+2.
+
+import './App.scss';
+
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; 
+
+import NavBar from '../NavBar/NavBar';
+import Main from '../Main/Main';
+import About from '../About/About';
+import AboutInfo from '../About/AboutInfo';
+import Skills from '../Skills/Skills';
+import SkillsInfo from '../Skills/SkillsInfo';
+import Work from '../Work/Work';
+import Greet from '../Greet/Greet';
+import MobileMenu from '../MobileMenu/MobileMenu';    ---------- 1. импорирую компонент
+import { useState } from 'react';
+
+
+function App() {
+
+  const [isMenuOpen, setMenuOpen] = useState(false);   -----3.1 Создаю состояние isMenuOpen и функцию setMenuOpen -меяет состояние
+
+  return (
+    <Router>
+      <div className='app'>
+          <NavBar
+            handleMenu={()=> setMenuOpen(isMenuOpen ? false : true)}  ----- 5.  на кнопку, что в навбаре навешу обработчик и функцию котораю бутеет открывать дровер изменяя
+          />                                                          его состояние на true. Изначально было просто - handleMenu={()=> setMenuOpen(true)}
+          <Switch>                                                    но я сделал переключать toggle, чтобы по клику и открывалось и закрывалось
+            <Route exact path='/'>
+              <Main/>
+              <Greet/>
+              <MobileMenu --------------2. Применяю его в приложении
+                menuOpen={isMenuOpen} ----------3. просверливаю пропс который принемает состояние isMenuOpen и передаст его в компонент
+                menuClose={()=> setMenuOpen(false)} ----------4. просверливаю пропс который есть анонимная функция по изменению состояние isMenuOpen на false
+              />                                        те изменив сотояние на false  дровер закрывается
+            </Route>
+            <Route exact path='/work'>
+              <Work/>
+            </Route>
+            <Route exact path='/about'>
+              <About/>
+              <AboutInfo/>
+            </Route>
+            <Route exact path='/skills'>
+              <Skills/>
+              <SkillsInfo/>
+            </Route>
+          </Switch>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+
+
+
+3.
+
+управление дровером
+
+
+import './navbar.scss';
+import logo from '../../resources/img/av_logo.png';
+import { Link, NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+
+function NavBar({handleMenu = Function.prototype}) {  ---- 1. передаю эту функция, и важно указать {handleMenu = Function.prototype} именно в кавычках
+                                                  что это именно функция, иначе реакт будет давать ошибку, мол это объект а не функция
+    return (
+        <motion.div 
+            className='navbar'
+        >
+            <motion.div 
+                className='navbar__wrapper'
+            >
+                <div className='navbar__logo'>
+                    <Link exact='true' to='/'><img src={logo} style={{borderRadius:'5px'}} alt="logo"></img></Link>
+                </div> 
+                <div>
+                    <nav className="navbar__links">
+                        <ul className="navbar__list">
+                            <li className="navbar__link"><NavLink exact activeStyle={{color:'rgba(244, 248, 3, 0.7)', fontSize: '23px'}} to='/about'>About</NavLink></li>
+                            <li className="navbar__link"><NavLink exact activeStyle={{color:'rgba(244, 248, 3, 0.7)', fontSize: '23px'}} to='/skills'>Skills</NavLink></li>
+                            <li className="navbar__link"><NavLink exact activeStyle={{color:'rgba(244, 248, 3, 0.7)', fontSize: '23px'}} to='/work'>Work</NavLink></li>
+                            <button className='navbar__btn'>Contact</button>
+                            
+                        </ul>
+                    </nav>
+                </div>
+                <div 
+                    className="hamburger"
+                    onClick={handleMenu}  --- 2. вешаю обработчик, он вызовет handleMenu, а handleMenu в app изменит состояние на true (или false)
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </motion.div>
+            
+        </motion.div>
+    )
+}
+
+export default NavBar;

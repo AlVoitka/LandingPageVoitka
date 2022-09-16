@@ -1,0 +1,11 @@
+
+
+https://codepen.io/rickzanutta/  --- тут представлены различные решения
+
+https://codepen.io/towc/pen/VYbYvQ  --- canvas -падающие сосульки
+
+https://codepen.io/trhino/pen/rNxyrQ  --- крутой фон
+
+https://codepen.io/jackrugile/pen/kQwPRO   --- гроза
+
+https://tympanus.net/Tutorials/ShapeHoverEffectSVG/index.html  --на ховер

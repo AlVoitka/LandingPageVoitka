@@ -97,6 +97,26 @@
             }
         }
     }
+    &__icon {
+        display: none;
+    }
+}
+
+.hamburger {
+    display: none;
+    height: 21px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    cursor: pointer;
+    transition: 0.3s all;
+    span {
+        display: block;
+        width: 30px;
+        height: 3px;
+        background: #f9faf8;
+        
+    }
 }
 
 
